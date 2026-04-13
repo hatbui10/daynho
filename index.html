@@ -61,6 +61,9 @@ button {
 
 <button onclick="setMode('A')">Tô dãy A (≥5)</button>
 <button onclick="setMode('B')">Tô dãy B (&lt;5)</button>
+<div id="count" style="margin-top:10px; font-size:18px; color:#22c55e;">
+Tổng số: 0
+</div>
 
 <div class="grid" id="grid"></div>
 
@@ -78,6 +81,7 @@ document.getElementById("fileInput").addEventListener("change", function(e) {
     reader.onload = function(e) {
         let text = e.target.result;
         data = text.replace(/[^0-9]/g, "").split("");
+        document.getElementById("count").innerText = "Tổng số: " + data.length;
 
         localStorage.setItem("data", JSON.stringify(data));
         render(data);
@@ -147,8 +151,12 @@ window.onload = function() {
     if (savedMode) mode = savedMode;
 
     if (data.length > 0) render(data);
+    if (data.length > 0) {
+    document.getElementById("count").innerText = "Tổng số: " + data.length;
+}
 }
 </script>
 
 </body>
 </html>
+
